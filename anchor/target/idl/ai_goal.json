@@ -1,0 +1,1302 @@
+{
+  "address": "95nsq6ehWVpJqMxL5wznvNGXMd8NN8MQGnenZ7DUGZfU",
+  "metadata": {
+    "name": "ai_goal",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "complete_goal",
+      "discriminator": [
+        140,
+        54,
+        173,
+        125,
+        210,
+        162,
+        67,
+        228
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "goal_manager",
+          "writable": true
+        },
+        {
+          "name": "goal",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "goal_id",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "confirm_witness",
+      "discriminator": [
+        166,
+        239,
+        181,
+        0,
+        91,
+        72,
+        39,
+        207
+      ],
+      "accounts": [
+        {
+          "name": "witness",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "goal",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "goal_id",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "create_agent",
+      "discriminator": [
+        143,
+        66,
+        198,
+        95,
+        110,
+        85,
+        83,
+        249
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "goal",
+          "writable": true
+        },
+        {
+          "name": "agent",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "goal.goal_id",
+                "account": "GoalInfo"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "agent_id",
+          "type": "string"
+        },
+        {
+          "name": "agent_name",
+          "type": "string"
+        },
+        {
+          "name": "charactor_json",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "create_comment",
+      "discriminator": [
+        236,
+        232,
+        11,
+        180,
+        70,
+        206,
+        73,
+        145
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "goal",
+          "writable": true
+        },
+        {
+          "name": "comment",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  109,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "goal.goal_id",
+                "account": "GoalInfo"
+              },
+              {
+                "kind": "account",
+                "path": "goal.comment_counter",
+                "account": "GoalInfo"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "goal_id",
+          "type": "u64"
+        },
+        {
+          "name": "content",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "create_goal",
+      "discriminator": [
+        229,
+        63,
+        42,
+        239,
+        1,
+        226,
+        219,
+        196
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "goal_manager",
+          "writable": true
+        },
+        {
+          "name": "goal",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "goal_manager.goal_count",
+                "account": "GoalManagerInfo"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_goals",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  103,
+                  111,
+                  97,
+                  108,
+                  115
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "ai_suggestion",
+          "type": "string"
+        },
+        {
+          "name": "deadline",
+          "type": "u64"
+        },
+        {
+          "name": "witnesses",
+          "type": {
+            "vec": "pubkey"
+          }
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "fail_goal",
+      "discriminator": [
+        250,
+        166,
+        193,
+        14,
+        200,
+        9,
+        119,
+        3
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "goal_manager",
+          "writable": true
+        },
+        {
+          "name": "goal",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "goal_id",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "init_witness_goal_data",
+      "discriminator": [
+        247,
+        196,
+        146,
+        168,
+        156,
+        11,
+        43,
+        59
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "goal"
+          ]
+        },
+        {
+          "name": "goal",
+          "writable": true
+        },
+        {
+          "name": "witness_goals",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  119,
+                  105,
+                  116,
+                  110,
+                  101,
+                  115,
+                  115,
+                  95,
+                  103,
+                  111,
+                  97,
+                  108,
+                  115
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "witness"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "goal_id",
+          "type": "u64"
+        },
+        {
+          "name": "witness",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "initialize_goal_manager",
+      "discriminator": [
+        165,
+        12,
+        34,
+        158,
+        63,
+        166,
+        31,
+        203
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "goal_manager",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  111,
+                  97,
+                  108,
+                  95,
+                  109,
+                  97,
+                  110,
+                  97,
+                  103,
+                  101,
+                  114
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "update_goal_count",
+      "discriminator": [
+        224,
+        51,
+        240,
+        233,
+        165,
+        94,
+        74,
+        56
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "goal_manager",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  111,
+                  97,
+                  108,
+                  95,
+                  109,
+                  97,
+                  110,
+                  97,
+                  103,
+                  101,
+                  114
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "goal_count",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "update_progress",
+      "discriminator": [
+        135,
+        47,
+        78,
+        113,
+        27,
+        158,
+        21,
+        111
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "goal",
+          "writable": true
+        },
+        {
+          "name": "progress_update",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  103,
+                  114,
+                  101,
+                  115,
+                  115
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "goal.goal_id",
+                "account": "GoalInfo"
+              },
+              {
+                "kind": "account",
+                "path": "goal.progress_update_counter",
+                "account": "GoalInfo"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "goal_id",
+          "type": "u64"
+        },
+        {
+          "name": "content",
+          "type": "string"
+        },
+        {
+          "name": "progress_percentage",
+          "type": "u64"
+        },
+        {
+          "name": "proof_file_blob_id",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Agent",
+      "discriminator": [
+        47,
+        166,
+        112,
+        147,
+        155,
+        197,
+        86,
+        7
+      ]
+    },
+    {
+      "name": "Comment",
+      "discriminator": [
+        150,
+        135,
+        96,
+        244,
+        55,
+        199,
+        50,
+        65
+      ]
+    },
+    {
+      "name": "GoalInfo",
+      "discriminator": [
+        148,
+        8,
+        208,
+        94,
+        103,
+        212,
+        204,
+        248
+      ]
+    },
+    {
+      "name": "GoalManagerInfo",
+      "discriminator": [
+        147,
+        55,
+        99,
+        221,
+        215,
+        135,
+        169,
+        58
+      ]
+    },
+    {
+      "name": "ProgressUpdate",
+      "discriminator": [
+        128,
+        253,
+        80,
+        56,
+        205,
+        185,
+        254,
+        234
+      ]
+    },
+    {
+      "name": "UserGoalsInfo",
+      "discriminator": [
+        218,
+        72,
+        230,
+        215,
+        197,
+        12,
+        142,
+        0
+      ]
+    },
+    {
+      "name": "WitnessGoalsInfo",
+      "discriminator": [
+        158,
+        156,
+        72,
+        2,
+        197,
+        78,
+        138,
+        114
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "CommentCreatedEvent",
+      "discriminator": [
+        160,
+        189,
+        202,
+        115,
+        93,
+        85,
+        148,
+        159
+      ]
+    },
+    {
+      "name": "CreateAgentEvent",
+      "discriminator": [
+        93,
+        170,
+        214,
+        27,
+        113,
+        140,
+        184,
+        161
+      ]
+    },
+    {
+      "name": "EventGoalCompleted",
+      "discriminator": [
+        229,
+        150,
+        96,
+        150,
+        88,
+        131,
+        215,
+        47
+      ]
+    },
+    {
+      "name": "EventGoalCountUpdated",
+      "discriminator": [
+        2,
+        192,
+        91,
+        141,
+        77,
+        101,
+        59,
+        63
+      ]
+    },
+    {
+      "name": "EventGoalCreated",
+      "discriminator": [
+        60,
+        32,
+        82,
+        59,
+        237,
+        230,
+        231,
+        89
+      ]
+    },
+    {
+      "name": "EventGoalFailed",
+      "discriminator": [
+        80,
+        245,
+        46,
+        175,
+        226,
+        227,
+        71,
+        208
+      ]
+    },
+    {
+      "name": "EventWitnessConfirmed",
+      "discriminator": [
+        73,
+        162,
+        95,
+        28,
+        211,
+        66,
+        17,
+        158
+      ]
+    },
+    {
+      "name": "EventWitnessGoalAdded",
+      "discriminator": [
+        63,
+        229,
+        117,
+        36,
+        91,
+        9,
+        104,
+        196
+      ]
+    },
+    {
+      "name": "ProgressUpdateEvent",
+      "discriminator": [
+        60,
+        42,
+        197,
+        228,
+        80,
+        204,
+        188,
+        241
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidDeadline",
+      "msg": "截止日期无效"
+    },
+    {
+      "code": 6001,
+      "name": "GoalNotActive",
+      "msg": "目标不处于活跃状态"
+    },
+    {
+      "code": 6002,
+      "name": "DeadlineNotReached",
+      "msg": "截止日期未到"
+    },
+    {
+      "code": 6003,
+      "name": "EmptyWitnesses",
+      "msg": "见证人列表为空"
+    },
+    {
+      "code": 6004,
+      "name": "NotWitness",
+      "msg": "调用者不是见证人"
+    },
+    {
+      "code": 6005,
+      "name": "AlreadyConfirmed",
+      "msg": "已经确认过"
+    },
+    {
+      "code": 6006,
+      "name": "NotAllWitnessesConfirmed",
+      "msg": "并非所有见证人都已确认"
+    },
+    {
+      "code": 6007,
+      "name": "NotGoalRelatedMember",
+      "msg": "不是目标相关成员"
+    },
+    {
+      "code": 6008,
+      "name": "AllWitnessesConfirmed",
+      "msg": "所有见证人已确认"
+    },
+    {
+      "code": 6009,
+      "name": "NotGoalCreator",
+      "msg": "不是目标创建者"
+    },
+    {
+      "code": 6010,
+      "name": "AgentIdTooShort",
+      "msg": "Agent ID太短"
+    },
+    {
+      "code": 6011,
+      "name": "AgentNameTooShort",
+      "msg": "Agent名称太短"
+    },
+    {
+      "code": 6012,
+      "name": "CharactorJsonTooShort",
+      "msg": "角色JSON太短"
+    },
+    {
+      "code": 6013,
+      "name": "AgentAlreadyExists",
+      "msg": "Agent已存在"
+    },
+    {
+      "code": 6014,
+      "name": "AgentNotExists",
+      "msg": "Agent不存在"
+    },
+    {
+      "code": 6015,
+      "name": "InvalidProgressPercentage",
+      "msg": "进度百分比无效"
+    },
+    {
+      "code": 6016,
+      "name": "InsufficientPayment",
+      "msg": "支付金额不足"
+    }
+  ],
+  "types": [
+    {
+      "name": "Agent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "agent_id",
+            "type": "string"
+          },
+          {
+            "name": "agent_name",
+            "type": "string"
+          },
+          {
+            "name": "charactor_json",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Comment",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "u64"
+          },
+          {
+            "name": "goal_id",
+            "type": "u64"
+          },
+          {
+            "name": "content",
+            "type": "string"
+          },
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "created_at",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CommentCreatedEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "goal_id",
+            "type": "u64"
+          },
+          {
+            "name": "comment_id",
+            "type": "u64"
+          },
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "content",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CreateAgentEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "agent_id",
+            "type": "string"
+          },
+          {
+            "name": "agent_name",
+            "type": "string"
+          },
+          {
+            "name": "charactor_json",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EventGoalCompleted",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "goal_id",
+            "type": "u64"
+          },
+          {
+            "name": "completer",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EventGoalCountUpdated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "goal_count",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EventGoalCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "goal_id",
+            "type": "u64"
+          },
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EventGoalFailed",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "goal_id",
+            "type": "u64"
+          },
+          {
+            "name": "failer",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EventWitnessConfirmed",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "goal_id",
+            "type": "u64"
+          },
+          {
+            "name": "witness",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EventWitnessGoalAdded",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "goal_id",
+            "type": "u64"
+          },
+          {
+            "name": "witness",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GoalInfo",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "goal_id",
+            "type": "u64"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "ai_suggestion",
+            "type": "string"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "status",
+            "type": "u8"
+          },
+          {
+            "name": "created_at",
+            "type": "u64"
+          },
+          {
+            "name": "deadline",
+            "type": "u64"
+          },
+          {
+            "name": "witnesses",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "confirmations",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "comment_counter",
+            "type": "u64"
+          },
+          {
+            "name": "progress_percentage",
+            "type": "u64"
+          },
+          {
+            "name": "progress_update_counter",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GoalManagerInfo",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "goal_count",
+            "type": "u64"
+          },
+          {
+            "name": "active_goals",
+            "type": {
+              "vec": "u64"
+            }
+          },
+          {
+            "name": "failed_goals",
+            "type": {
+              "vec": "u64"
+            }
+          },
+          {
+            "name": "completed_goals",
+            "type": {
+              "vec": "u64"
+            }
+          },
+          {
+            "name": "total_balance",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProgressUpdate",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "u64"
+          },
+          {
+            "name": "goal_id",
+            "type": "u64"
+          },
+          {
+            "name": "content",
+            "type": "string"
+          },
+          {
+            "name": "proof_file_blob_id",
+            "type": "string"
+          },
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "created_at",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProgressUpdateEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "goal_id",
+            "type": "u64"
+          },
+          {
+            "name": "update_id",
+            "type": "u64"
+          },
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "content",
+            "type": "string"
+          },
+          {
+            "name": "progress_percentage",
+            "type": "u64"
+          },
+          {
+            "name": "proof_file_blob_id",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserGoalsInfo",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "goal_ids",
+            "type": {
+              "vec": "u64"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "WitnessGoalsInfo",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "goal_ids",
+            "type": {
+              "vec": "u64"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
