@@ -95,21 +95,20 @@ export default function Sidebar() {
 
             {/* 底部区域 */}
             <div className="border-t border-gray-200 p-4">
+                {/* 钱包连接 */}
+                <div className="flex justify-center items-center mb-8">
+                    <WalletButton />
+                </div>
+
                 {/* 语言切换开关 */}
-                <div className="flex justify-between items-center mb-4">
+                <div className="flex justify-center items-center mb-15">
                     <button
                         onClick={toggleLanguage}
-                        className="flex items-center px-4 py-2 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-100 w-full"
+                        className="flex items-center px-4 py-2 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-100 w-auto"
                     >
                         <LanguageIcon className="w-6 h-6" />
                         <span className="ml-3">{t("language")}</span>
                     </button>
-                </div>
-
-                {/* 钱包连接 */}
-                <div className="flex justify-center items-center">
-                    {/* <ConnectButton /> */}
-                    <WalletButton />
                 </div>
             </div>
         </div>
