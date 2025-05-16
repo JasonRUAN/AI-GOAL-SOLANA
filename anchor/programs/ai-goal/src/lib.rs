@@ -19,7 +19,7 @@ use instructions::init_witness_goal_data::*;
 use instructions::initialize::*;
 use instructions::update_progress::*;
 
-declare_id!("95zvvX88Cuy5mWGkpJzawYmh9NqY9ksREPzBcdeWM8WM");
+declare_id!("5HVX6DtALNXPhdUx52FGiStGLLzZxUgzv7d5ymp6b7Jh");
 
 #[program]
 pub mod ai_goal {

@@ -6,10 +6,10 @@ resolution = true
 skip-lint = false
 
 [programs.devnet]
-aigoal = "95zvvX88Cuy5mWGkpJzawYmh9NqY9ksREPzBcdeWM8WM"
+aigoal = "5HVX6DtALNXPhdUx52FGiStGLLzZxUgzv7d5ymp6b7Jh"
 
 [programs.localnet]
-aigoal = "95zvvX88Cuy5mWGkpJzawYmh9NqY9ksREPzBcdeWM8WM"
+aigoal = "5HVX6DtALNXPhdUx52FGiStGLLzZxUgzv7d5ymp6b7Jh"
 
 [registry]
 url = "https://api.apr.dev"
