@@ -33,10 +33,6 @@ export function useGetGoalProgressUpdates({
             const goal = goalAccount.account;
             const progressUpdateCounter = goal.progressUpdateCounter.toNumber();
 
-            if (progressUpdateCounter === 0) {
-                return [];
-            }
-
             // 2. 获取所有进度更新
             const progressUpdates: ProgressUpdateDetail[] = [];
             const goalIdBN = new BN(goalId);
@@ -77,7 +73,7 @@ export function useGetGoalProgressUpdates({
 
             return progressUpdates;
         },
-        enabled: !!goalId && !!goal_accounts.data,
+        enabled: !!goal_accounts.data,
         staleTime: 30 * 1000, // 30秒内数据视为新鲜
         refetchOnWindowFocus: false, // 窗口聚焦时不自动刷新
     });

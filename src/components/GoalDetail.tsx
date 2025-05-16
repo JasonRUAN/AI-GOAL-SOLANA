@@ -100,6 +100,8 @@ export function GoalDetail({ id }: GoalDetailProps) {
     const { data: progressUpdates, refetch: refetchProgressUpdates } =
         useGetGoalProgressUpdates({ goalId: Number(id) });
 
+    // console.log("progressUpdates: ", JSON.stringify(progressUpdates, null, 2));
+
     const {
         goal,
         isLoading: loading,
@@ -149,7 +151,7 @@ export function GoalDetail({ id }: GoalDetailProps) {
         }
     }, [goal, address]);
 
-    console.log("goalComments >>>", JSON.stringify(goalComments, null, 2));
+    // console.log("goalComments >>>", JSON.stringify(goalComments, null, 2));
 
     if (error) {
         toast.error(`get goal failed: ${error.message}`);
@@ -183,9 +185,9 @@ export function GoalDetail({ id }: GoalDetailProps) {
         (witness: PublicKey) => getStringValue(witness) === address
     );
 
-    console.log("witnesses: ", JSON.stringify(witnesses, null, 2));
+    // console.log("witnesses: ", JSON.stringify(witnesses, null, 2));
 
-    console.log(`isCreator: ${isCreator}, isWitness: ${isWitness}`);
+    // console.log(`isCreator: ${isCreator}, isWitness: ${isWitness}`);
 
     const getStatusText = (status: number) => {
         switch (status) {
@@ -257,7 +259,7 @@ export function GoalDetail({ id }: GoalDetailProps) {
 
     // 处理确认完成按钮点击
     const handleConfirmWitness = () => {
-        console.log("handleConfirmWitness: ", id);
+        // console.log("handleConfirmWitness: ", id);
         confirmWitness(id, {
             onSuccess: () => {
                 toast.success(
