@@ -7,6 +7,7 @@ pub mod events;
 pub mod instructions;
 pub mod state;
 
+use instructions::add_witness_goal::*;
 use instructions::complete_goal::*;
 use instructions::confirm_witness::*;
 use instructions::create_agent::*;
@@ -18,7 +19,7 @@ use instructions::init_witness_goal_data::*;
 use instructions::initialize::*;
 use instructions::update_progress::*;
 
-declare_id!("95nsq6ehWVpJqMxL5wznvNGXMd8NN8MQGnenZ7DUGZfU");
+declare_id!("AKH1S6GirfwWMhW4AjQFda38V5pJciVrMtEnuABormH8");
 
 #[program]
 pub mod ai_goal {
@@ -103,5 +104,13 @@ pub mod ai_goal {
         charactor_json: String,
     ) -> Result<()> {
         _create_agent(ctx, agent_id, agent_name, charactor_json)
+    }
+
+    pub fn add_witness_goal(
+        ctx: Context<AddWitnessGoal>,
+        goal_id: u64,
+        witness: Pubkey,
+    ) -> Result<()> {
+        _add_witness_goal(ctx, goal_id, witness)
     }
 }
