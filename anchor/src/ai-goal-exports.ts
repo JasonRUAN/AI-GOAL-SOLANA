@@ -31,7 +31,7 @@ export function getAIGoalProgramId(cluster: Cluster) {
         case "testnet":
             // This is the program ID for the Counter program on devnet and testnet.
             return new PublicKey(
-                "AKH1S6GirfwWMhW4AjQFda38V5pJciVrMtEnuABormH8"
+                "95zvvX88Cuy5mWGkpJzawYmh9NqY9ksREPzBcdeWM8WM"
             );
         case "mainnet-beta":
         default:
